@@ -80,3 +80,8 @@ button:focus-visible {
   -ms-user-select: none;
   user-select: none;
 }
+
+/* Tahoma has no italics */
+.references {
+  font-family: Arial, Helvetica, sans-serif;
+}

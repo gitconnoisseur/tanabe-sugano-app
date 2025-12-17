@@ -500,6 +500,10 @@ const TanabeSuganoDiagram = () => {
             <li key={index}>{ion.ion}: {ion.B}</li>
           ))}
         </ul>
+        <strong>References:</strong>
+        <ol className='references'>
+          <li>Lancashire, R.J. <i>Tanabe-Sugano diagrams</i> (Dataset). University of the West Indies, Mona, April 2, 2019. http://wwwchem.uwimona.edu.jm/courses/Tanabe-Sugano/TSspread.html</li>
+        </ol>
       </div>
       </div>
     </div>
