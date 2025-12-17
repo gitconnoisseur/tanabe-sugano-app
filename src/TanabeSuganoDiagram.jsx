@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 const d4c = 27.1356792;
 const d5c = 27.9394646;
 const d6c = 18.3333333;
+const d7c = 21.2981744;
 
 const configs = {
   'd2': {
@@ -14,13 +15,13 @@ const configs = {
       { label: '³T₂(F)', color: 'orangered', allowed: true, fn: (x) => 0.8286*x + 0.005146*x**2 - 0.00005798*x**3 },
       { label: '³A₂(F)', labelPosX: 35, labelAdjustX: 0, labelAdjustY: -30, color: 'deeppink', allowed: true, fn: (x) => 1.8286*x + 0.005146*x**2 - 0.00005798*x**3 },
       { label: '³T₁(P)', color: 'green', allowed: true, fn: (x) => 14.864 + 0.6827*x + 0.009024*x**2 - 0.00009750*x**3 },
-      { label: '¹T₂(D)', labelPosX: 10, labelAdjustX: 0, labelAdjustY: 20, allowed: false, fn: (x) => 13.852 + 0.3724*x - 0.03294*x**2 +0.001387*x**3 -0.00002830*x**4 + 2.2359*(10**-7)*x**5 },
-      { label: '¹E(D)', labelPosX: 10, labelAdjustX: 0, labelAdjustY: -10, allowed: false, fn: (x) => 13.84 + 0.7374*x -0.08559*x**2 +0.004311*x**3 -0.00009952*x**4 + 8.5933*(10**-7)*x**5 },
-      { label: '¹A₁(G)', labelAdjustX: 5, labelAdjustY: 20, allowed: false, fn: (x) => 20.84 + 1.0286*x -0.02882*x**2 +0.0001739*x**3 +7.2070*10**-6*x**4 -1.062*(10**-7)*x**5 },
-      { label: '¹T₂(G)', allowed: false, fn: (x) => 20.84 + 0.2285*x +0.05275*x**2 -0.002032*x**3 +0.00003996*x**4 -3.1056*(10**-7)*x**5 },
-      { label: '¹T₁(G)', allowed: false, fn: (x) => 20.84 + 0.8031*x +0.009562*x**2 -0.0003032*x**3 +5.3568*10**-6*x**4 -3.9187*(10**-8)*x**5 },
-      { label: '¹E(G)', labelPosX: 27, labelAdjustX: 0, labelAdjustY: -15, allowed: false, fn: (x) => 20.84 + 0.8688*x +0.1047*x**2 -0.004917*x**3 +0.0001102*x**4 -9.3770*(10**-7)*x**5 },
-      { label: '¹A₁(S)', labelPosX: 14, labelAdjustX: -5, labelAdjustY: -20, allowed: false, fn: (x) => 52.94 + 0.5774*x +0.04798*x**2 -0.0007824*x**3 +3.5591*10**-6*x**4 +2.7330*(10**-7)*x**5 },
+      { label: '¹T₂(D)', labelPosX: 10, labelAdjustX: 0, labelAdjustY: 20, allowed: false, fn: (x) => 13.84 + 0.253767*x + -0.0116031*x**2 + 0.000156493*x**3 },
+      { label: '¹E(D)', labelPosX: 10, labelAdjustX: 0, labelAdjustY: -10, allowed: false, fn: (x) => 13.84 + 0.382418*x + -0.0194115*x**2 + 0.000276916*x**3  },
+      { label: '¹A₁(G)', labelAdjustX: 5, labelAdjustY: 20, allowed: false, fn: (x) => 20.84 + 1.012*x + -0.0280407*x**2 + 0.000285665*x**3 },
+      { label: '¹T₂(G)', allowed: false, fn: (x) => 20.84 + 0.404327*x + 0.0218097*x**2 + -0.000270539*x**3  },
+      { label: '¹T₁(G)', allowed: false, fn: (x) => 20.84 + 0.829042*x + 0.00510427*x**2 + -0.0000570434*x**3 },
+      { label: '¹E(G)', labelPosX: 27, labelAdjustX: 0, labelAdjustY: -15, allowed: false, fn: (x) => 20.84 + 1.27564*x + 0.0296215*x**2 + -0.000391026*x**3 },
+      { label: '¹A₁(S)', labelPosX: 14, labelAdjustX: -5, labelAdjustY: -20, allowed: false, fn: (x) => 52.94 + 0.645942*x + 0.0382554*x**2 + -0.000399834*x**3 },
     ], freeIonLabels: [
       { label: '¹S', labelPosY: 52.94, labelAdjustY: 8 },
       { label: '¹G', labelPosY: 20.84, labelAdjustY: 5 },
@@ -42,9 +43,9 @@ const configs = {
     terms: [
       { label: '⁴A₂(F)', color: 'blue', allowed: true, fn: (x) => 0 },
       { label: '⁴T₂(F)', color: 'orangered', allowed: true, fn: (x) => x },
-      { label: '⁴T₁(F)', labelAdjustX: 0, labelAdjustY: -5, color: 'green', allowed: true, fn: (x) => 1.835*x + -0.0221532*x**2 + 0.000199758*x**3  },
-      { label: '⁴T₁(P)', labelPosX: 33, labelAdjustY: 20, color: 'deeppink', allowed: true, fn: (x) => 15 + 1.165*x + 0.0221532*x**2 + -0.000199758*x**3  },
-      { label: '²E(G)', labelPosX: 37, labelAdjustX: -5, labelAdjustY: 20, allowed: false, fn: (x) => 17.5016 + 0.362514*x + -0.0119856*x**2 + 0.000128095*x**3   },
+      { label: '⁴T₁(F)', labelAdjustX: 0, labelAdjustY: -5, color: 'green', allowed: true, fn: (x) => 1.835*x + -0.0221532*x**2 + 0.000199758*x**3 },
+      { label: '⁴T₁(P)', labelPosX: 33, labelAdjustY: 20, color: 'deeppink', allowed: true, fn: (x) => 15 + 1.165*x + 0.0221532*x**2 + -0.000199758*x**3 },
+      { label: '²E(G)', labelPosX: 37, labelAdjustX: -5, labelAdjustY: 20, allowed: false, fn: (x) => 17.5016 + 0.362514*x + -0.0119856*x**2 + 0.000128095*x**3 },
       { label: '²T₁(G)', allowed: false, fn: (x) => 17.5016 + 0.485589*x + -0.0166284*x**2 + 0.000178069*x**3  },
       { label: '²T₂(G)', labelAdjustX: 0, labelAdjustY: -5, allowed: false, fn: (x) => 17.5016 + 1.23115*x + -0.0346798*x**2 + 0.000337976*x**3  },
       { label: '²A₁(G)', labelAdjustX: 10, labelAdjustY: 0, allowed: false, fn: (x) => 17.5016 + x },
@@ -174,15 +175,15 @@ const configs = {
     CB: 4.63,
     stylized: 'd⁷',
     terms: [
-    { label: '⁴T₁(F)', allowedEnd: 21.29, color: 'orangered', allowed: true, fn: (x) => x <= 21.29 ? 0 :  -1.9078*x +0.1539*x**2 -0.004026*x**3 +0.00005191*x**4 -2.638*(10**-7)*x**5 },
-    { label: '⁴T₂(F)', allowedEnd: 21.29, color: 'purple', allowed: true, fn: (x) => x <= 21.29 ? 0.8002*x +0.01055*x**2 -0.0004101*x**3 +0.00001007*x**4 -1.1280*(10**-7)*x**5 : -1.0867*x +0.1608*x**2 -0.004186*x**3 +0.00005391*x**4 -2.741*(10**-7)*x**5 },
-    { label: '⁴A₂(F)', allowedEnd: 21.29, labelPosX: 31, labelAdjustX: 0, labelAdjustY: -15, allowed: true, color: 'green', fn: (x) => x <= 21.29 ? 1.800*x +0.01055*x**2 -0.0004101*x**3 +0.00001007*x**4 -1.128*(10**-7)*x**5 : 40.7412738 -6.3145*x +0.5340*x**2 -0.01515*x**3 +0.0002120*x**4 -0.000001171*x**5 },
-    { label: '⁴T₁(P)', allowedEnd: 21.29, allowed: true, color: 'blue', fn: (x) => x <= 21.29 ? 15 + 0.6004*x +0.02109*x**2 -0.0008202*x**3 +0.00002014*x**4 -2.256*(10**-7)*x**5 : 32.5880254 -3.954*x +0.3288*x**2 -0.009080*x**3 +0.0001242*x**4 -6.714*(10**-7)*x**5 },
-    { label: '²E(G)', allowedStart: 21.29, labelPosX: 16, labelAdjustX: 0, labelAdjustY: -10, allowed: true, color: 'blue', fn: (x) => x <= 21.29 ? 17.89 + 0.4470*x -0.2604*x**2 +0.02312*x**3 -0.0009743*x**4 +0.00001557*x**5 : 0 },
-    { label: '²T₁(G)', allowedStart: 21.29, labelPosX: 40, labelAdjustX: 0, labelAdjustY: 15, allowed: true, color: 'green', fn: (x) => x <= 21.29 ? 17.89 + 0.6824*x -0.1264*x**2 +0.01087*x**3 -0.0004517*x**4 +7.236*(10**-6)*x**5 : 19.0321308 -2.174*x +0.1835*x**2 -0.005291*x**3 +0.00007531*x**4 -4.225*(10**-7)*x**5 },
-    { label: '²T₂(G)', allowedStart: 21.29, allowed: true, color: 'deeppink', fn: (x) => x <= 21.29 ? 17.89 + 0.4322*x -0.04047*x**2 +0.001839*x**3 -0.00003862*x**4 +2.633*(10**-7)*x**5 : 19.7133408 -1.900*x +0.1534*x**2 -0.004021*x**3 + 0.00005196*x**4 -2.646*(10**-7)*x**5 },
-    { label: '²A₁(G)', allowedStart: 21.29, labelPosX: 37.5, labelAdjustX: -10, labelAdjustY: -20, allowed: true, color: 'orangered', fn: (x) => x <= 21.29 ? 17.89 + 0.8186*x +0.001488*x**2 +0.0009939*x**3 -0.00007574*x**4 +1.689*(10**-6)*x**5 : 38.1477383 -4.447*x +0.3761*x**2 -0.01087*x**3 +0.0001549*x**4 -8.697*(10**-7)*x**5 },
-    { label: '²A₂(F)', allowedStart: 21.29, labelPosX: 28, labelAdjustX: -20, labelAdjustY: -5, allowed: true, color: 'deeppink', fn: (x) => x <= 21.29 ? 37.8894523 + 0.8190*x +0.001386*x**2 +0.001004*x**3 -0.00007620*x**4 +1.696*(10**-6)*x**5 : 58.1477383 -4.447*x +0.3761*x**2 -0.01087*x**3 +0.0001549*x**4 -8.697*(10**-7)*x**5 },
+    { label: '⁴T₁(F)', allowedEnd: d7c, color: 'orangered', allowed: true, fn: (x) => x <= d7c ? 0 :  0.880179*(x-d7c) + 0.00761534*(x-d7c)**2 + -0.000156382*(x-d7c)**3 },
+    { label: '⁴T₂(F)', allowedEnd: d7c, color: 'purple', allowed: true, fn: (x) => x <= d7c ? 0 + 0.80956*x + 0.00768058*x**2 + -0.000133943*x**3 : 19.4431 + 1.84599*(x-d7c) + 0.00841736*(x-d7c)**2 + -0.000165837*(x-d7c)**3 },
+    { label: '⁴A₂(F)', allowedEnd: d7c, labelPosX: 31, labelAdjustX: 0, labelAdjustY: -15, allowed: true, color: 'green', fn: (x) => x <= d7c ? 1.80956*x + 0.00768067*x**2 + -0.000133947*x**3 : 40.74127 + 2.84599*(x-d7c) + 0.00841749*(x-d7c)**2 + -0.000165841*(x-d7c)**3 },
+    { label: '⁴T₁(P)', allowedEnd: d7c, allowed: true, color: 'blue', fn: (x) => x <= d7c ? 15 + 0.61912*x + 0.0153611*x**2 + -0.000267885*x**3 : 32.58803 + 1.8118*(x-d7c) + 0.00921944*(x-d7c)**2 + -0.000175293*(x-d7c)**3 },
+    { label: '²E(G)', allowedStart: d7c, labelPosX: 16, labelAdjustX: 0, labelAdjustY: -10, allowed: true, color: 'blue', fn: (x) => x <= d7c ? 17.89 + -0.0966066*x + -0.0720543*x**2 + 0.00181804*x**3 : 0 },
+    { label: '²T₁(G)', allowedStart: d7c, labelPosX: 40, labelAdjustX: 0, labelAdjustY: 15, allowed: true, color: 'green', fn: (x) => x <= d7c ? 17.89 + 0.429253*x + -0.0389471*x**2 + 0.000996914*x**3 : 18.81944 + 0.85552*(x-d7c) + 0.00811913*(x-d7c)**2 + -0.000161687*(x-d7c)**3  },
+    { label: '²T₂(G)', allowedStart: d7c, allowed: true, color: 'deeppink', fn: (x) => x <= d7c ? 17.89 + 0.383329*x + -0.0262384*x**2 + 0.000582538*x**3 : 19.71334 + 0.875027*(x-d7c) + 0.00756858*(x-d7c)**2 + -0.000154409*(x-d7c)**3 },
+    { label: '²A₁(G)', allowedStart: d7c, labelPosX: 37.5, labelAdjustX: -10, labelAdjustY: -20, allowed: true, color: 'orangered', fn: (x) => x <= d7c ? 17.89 + 0.80937*x + 0.00769815*x**2 + -0.000134418*x**3 : 37.33255 + 1.84599*(x-d7c) + 0.0084173*(x-d7c)**2 + -0.000165836*(x-d7c)**3  },
+    { label: '²A₂(F)', allowedStart: d7c, labelPosX: 28, labelAdjustX: -20, labelAdjustY: -5, allowed: true, color: 'deeppink', fn: (x) => x <= d7c ? 37.88945 + 0.809561*x + 0.00768051*x**2 + -0.000133941*x**3 : 57.33255 + 1.84599*(x-d7c) + 0.00841738*(x-d7c)**2 + -0.000165838*(x-d7c)**3 },
   ], freeIonLabels: [
     { label: '⁴F', labelPosY: 0, labelAdjustY: 5 },
     { label: '⁴P', labelPosY: 15, labelAdjustY: 9, labelAdjustX: -23 },
@@ -474,7 +475,7 @@ const TanabeSuganoDiagram = () => {
       </div>
       <div style={{ display: 'flex', alignItems: 'flex-start' }}>
       <div style={{ 
-        border: '2px solid #66666ff',
+        border: '2px solid #777777ff',
         borderRadius: '4px',
         padding: '15px',
         display: 'inline-block',
@@ -487,7 +488,7 @@ const TanabeSuganoDiagram = () => {
         <ul>
           {configs[config].terms.map((term, index) => (
             <li key={index} style={{ color: (term.allowedEnd && deltaB > term.allowedEnd) || (term.allowedStart && deltaB < term.allowedStart) || !term.allowed ? 'black' : term.color }}>
-              {term.label}: E/B = {term.fn(deltaB).toFixed(2) || 0}
+              {term.label}: E/B = {term.fn(deltaB).toFixed(1) || 0}
             </li>
           ))}
         </ul>
