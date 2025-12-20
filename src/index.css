@@ -89,3 +89,8 @@ button:focus-visible {
 .references {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+ul, ol {
+  padding-left: 15px;
+  margin-left: 0;
+}

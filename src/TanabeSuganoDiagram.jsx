@@ -60,7 +60,7 @@ const configs = {
       { ion: 'Zr⁺', B: 450 },
       { ion: 'Hf⁺', B: 440 },
       { ion: 'V²⁺', B: 760 },
-      { ion: 'Nb²⁺', B: 562 },
+      { ion: 'Nb²⁺', B: 530 },
       { ion: 'Cr³⁺', B: 933 },
       { ion: 'Mn⁴⁺', B: 1088 }
     ]},
@@ -91,9 +91,9 @@ const configs = {
     { label: '¹F', labelPosY: 48, labelAdjustY: 4 },
     { label: '³F', labelPosY: 57, labelAdjustY: 8 },
   ], commonIons: [
-    /*{ ion: 'Ti⁰', B: 380 },
+    { ion: 'Ti⁰', B: 380 },
     { ion: 'Zr⁰', B: 250 },
-    { ion: 'Hf⁰', B: 280 },*/
+    { ion: 'Hf⁰', B: 280 },
     { ion: 'V⁺', B: 585 },
     { ion: 'Nb⁺', B: 260 },
     { ion: 'Ta⁺', B: 480 },
@@ -125,9 +125,9 @@ const configs = {
     { label: '²I', labelPosY: 47, labelAdjustY: 12 },
     { label: '⁴F', labelPosY: 53, labelAdjustY: 8 },
   ], commonIons: [
-    /*{ ion: 'V⁰', B: 436 },
+    { ion: 'V⁰', B: 436 },
     { ion: 'Nb⁰', B: 300 },
-    { ion: 'Ta⁰', B: 350 },*/
+    { ion: 'Ta⁰', B: 350 },
     { ion: 'Cr⁺', B: 655 },
     { ion: 'Mo⁺', B: 440 },
     { ion: 'Mn²⁺', B: 859 },
@@ -162,9 +162,9 @@ const configs = {
     { label: '¹F', labelPosY: 47, labelAdjustY: 5 },
     { label: '³F', labelPosY: 55, labelAdjustY: -3 },
   ], commonIons: [
-    /*{ ion: 'Cr⁰', B: 790 },
+    { ion: 'Cr⁰', B: 790 },
     { ion: 'Mo⁰', B: 460 },
-    { ion: 'W⁰', B: 370 },*/
+    { ion: 'W⁰', B: 370 },
     { ion: 'Mn⁺', B: 680 },
     { ion: 'Re⁺', B: 470 },
     { ion: 'Fe²⁺', B: 897 },
@@ -191,8 +191,8 @@ const configs = {
     { label: '²G', labelPosY: 18, labelAdjustY: 7 },
     { label: '²F', labelPosY: 38, labelAdjustY: 13 },
   ], commonIons: [
-    /*{ ion: 'Mn⁰', B: 720 },
-    { ion: 'Re⁰', B: 850 },*/
+    { ion: 'Mn⁰', B: 720 },
+    { ion: 'Re⁰', B: 850 },
     { ion: 'Fe⁺', B: 764 },
     { ion: 'Ru⁺', B: 670 },
     { ion: 'Co²⁺', B: 989 },
@@ -220,11 +220,11 @@ const configs = {
     { label: '¹G', labelPosY: 21, labelAdjustY: 2 },
     { label: '¹S', labelPosY: 55, labelAdjustY: -5 },
   ], commonIons: [
-    /*{ ion: 'Fe⁰', B: 805 },
-    { ion: 'Ru⁰', B: 600 },*/
+    { ion: 'Fe⁰', B: 805 },
+    { ion: 'Ru⁰', B: 600 },
     { ion: 'Co⁺', B: 798 },
     { ion: 'Ni²⁺', B: 1042 },
-    { ion: 'Pd⁺', B: 830 }
+    { ion: 'Pd²⁺', B: 830 }
   ]},
 };
 
@@ -472,7 +472,7 @@ const TanabeSuganoDiagram = () => {
           <option value="d7">d⁷</option>
           <option value="d8">d⁸</option>
         </select>
-        <label>   Drag black cursor to reposition.</label>
+        <label>   Drag black vertical line to reposition.</label>
       </div>
       <div style={{ display: 'flex', alignItems: 'flex-start' }}>
       <div style={{ 
@@ -484,7 +484,7 @@ const TanabeSuganoDiagram = () => {
       }}>
         <svg ref={svgRef}></svg>
       </div>
-      <div style={{ marginLeft: '20px', marginTop: '10px', color: 'black' }}>
+      <div style={{ marginLeft: '20px', marginTop: '5px', color: 'black' }}>
         <strong>Δ/B:</strong> {deltaB.toFixed(2)}
         <ul>
           {configs[config].terms.map((term, index) => (
@@ -504,7 +504,9 @@ const TanabeSuganoDiagram = () => {
         <strong>References:</strong>
         <ol className='references'>
           <li>Lancashire, R.J. <i>Tanabe-Sugano diagrams</i> (Dataset). University of the West Indies, Mona, April 2, 2019. http://wwwchem.uwimona.edu.jm/courses/Tanabe-Sugano/TSspread.html</li>
+          <li>Figgis, B.N.; Hitchman, M.A. <i>Ligand Field Theory and Its Applications</i>; Wiley-VCH, 2000.</li>
         </ol>
+        <p>Interface by Rajas Ketkar with advising from Patrick Holland, Yale University. Last modified Dec 2025.</p>
       </div>
       </div>
     </div>
