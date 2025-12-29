@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import * as d3 from 'd3';
 
 const d4c = 27.1356792;
@@ -73,7 +73,7 @@ const configs = {
     { label: '³T₁(H)', allowedStart: d4c, allowed: true, color: 'blue', fn: (x) => x <= d4c ? 22.4020101 -0.32644*x + -0.0360998*x**2 + 0.000672*x**3 : 0 },
     { label: '³E(H)', allowedStart: d4c, labelAdjustX: 0, labelAdjustY: 25, allowed: true, color: 'deeppink', fn: (x) => x <= d4c ? 22.4020101 + 0.145953*x + -0.00766367*x**2 + 0.000138297*x**3 : 23.4398191 + 0.921438*(x-d4c) + 0.00405374*(x-d4c)**2 + -0.0000831305*(x-d4c)**3 },
     { label: '³T₂(H)', allowedStart: d4c, labelAdjustX: 5, labelAdjustY: 25, allowed: true, color: 'blue', fn: (x) => x <= d4c ? 22.4020101 + 0.595581*x + -0.0358792*x**2 + 0.000693441*x**3 : 25.7465967 + 0.926736*(x-d4c) + 0.003923*(x-d4c)**2 + -0.000081479*(x-d4c)**3 },
-    { label: '³A₁(G)', allowedStart: d4c, labelPosX: 40, labelAdjustX: 0, labelAdjustY: 0, allowed: true, color: 'orangered', fn: (x) => x <= d4c ? 27.4020101 : 27.4020101 + 0.915464*(x-d4c) + 0.00420368*(x-d4c)**2 + -0.0000850281*(x-d4c)**3 },
+    { label: '³A₁(G)', allowedStart: d4c, labelPosX: 40, labelAdjustX: -2, labelAdjustY: 0, allowed: true, color: 'orangered', fn: (x) => x <= d4c ? 27.4020101 : 27.4020101 + 0.915464*(x-d4c) + 0.00420368*(x-d4c)**2 + -0.0000850281*(x-d4c)**3 },
     { label: '³A₂(F)', allowedStart: d4c, labelAdjustX: 0, labelAdjustY: -10, allowed: true, color: 'green', fn: (x) => x <= d4c ? 25.7456131 + 0.178647*x + -0.0040449*x**2 + 0.0000451676*x**3 : 28.5120214 + 0.96987*(x-d4c) + 0.00332458*(x-d4c)**2 + -0.000076666*(x-d4c)**3 },
     { label: '³A₂(F)', allowedStart: d4c, labelPosX: 15, labelAdjustX: -10, labelAdjustY: -10, allowed: true, color: 'deeppink', fn: (x) => x <= d4c ? 56.8599146 + 0.821353*x + 0.00404491*x**2 + -0.0000451679*x**3 : 81.2291847 + 1.86106*(x-d4c) + 0.00508273*(x-d4c)**2 + -0.0000933893*(x-d4c)**3 },
     { label: '¹T₂(I)', allowedStart: d4c, labelPosX: 32, labelAdjustY: 20, allowed: false, fn: (x) => x <= d4c ? 33.6030151 + -0.257754*x + -0.03576*x**2 + 0.000643885*x**3 : 12.9270276 + -0.00620412*(x-d4c) + 0.00286826*(x-d4c)**2 + -0.0000714804*(x-d4c)**3 },
@@ -250,7 +250,7 @@ const TanabeSuganoDiagram = () => {
     const svg = d3.select(svgRef.current)
       .attr('width', width)
       .attr('height', height)
-      .style('background', 'white');
+      .style('background', '#f8f9fa');
 
     // Remove everything and redraw
     svg.selectAll('*').remove();
@@ -264,7 +264,7 @@ const TanabeSuganoDiagram = () => {
     .selectAll('text') // Select all axis tick labels
     .attr('fill', 'black')
     .classed('noSelect', true)
-    .style('font-size', '14px');
+    .style('font-size', '0.875rem');
 
     svg.append('g')
     .attr('transform', `translate(0,${height - margin.bottom})`)
@@ -272,7 +272,7 @@ const TanabeSuganoDiagram = () => {
     .selectAll('text') // Select all axis tick labels
     .attr('fill', 'black') 
     .classed('noSelect', true)
-    .style('font-size', '14px');
+    .style('font-size', '0.875rem');
 
     // not sure why but tickSizeOuter must be zero plus this function must be in place to remove ticks at zero
     svg.selectAll(".tick")
@@ -287,7 +287,7 @@ const TanabeSuganoDiagram = () => {
     .attr("x", width * 1.1 / 2)
     .attr("y", height - .2 * margin.bottom) // position below axis
     .attr("font-weight", "bold")
-    .style("font-size", "18px")
+    .style("font-size", "1.125rem")
     .classed('noSelect', true)
     .text("Δₒ / B");
 
@@ -297,7 +297,7 @@ const TanabeSuganoDiagram = () => {
     .attr("y", margin.left / 3) // position to the left of y-axis
     .attr("transform", `rotate(-90)`)
     .attr("font-weight", "bold")
-    .style("font-size", "18px")
+    .style("font-size", "1.125rem")
     .classed('noSelect', true)
     .text("E / B");
 
@@ -307,7 +307,7 @@ const TanabeSuganoDiagram = () => {
         .attr('x', margin.left - 20 + (term.labelAdjustX || 0))
         .attr('y', yScale(term.labelPosY) - 5 + (term.labelAdjustY || 0))
         .attr('fill', 'black')
-        .style('font-size', '14px')
+        .style('font-size', '0.875rem')
         .classed('noSelect', true)
         .text(term.label);
       }
@@ -383,7 +383,7 @@ const TanabeSuganoDiagram = () => {
           .attr('x', xScale(term.labelPosX) + (term.labelAdjustX || 0))
           .attr('y', yScale(term.fn(term.labelPosX)) + (term.labelAdjustY || 0))
           .attr('fill', term.color)
-          .style('font-size', '14px')
+          .style('font-size', '0.875rem')
           .classed('noSelect', true)
           .text(term.label);
       } else {
@@ -391,7 +391,7 @@ const TanabeSuganoDiagram = () => {
           .attr('x', width - margin.right - 10 + (term.labelAdjustX || 0))
           .attr('y', yScale(term.fn(40)) - 5 + (term.labelAdjustY || 0))
           .attr('fill', term.color)
-          .style('font-size', '14px')
+          .style('font-size', '0.875rem')
           .classed('noSelect', true)
           .text(term.label);
       }
@@ -452,64 +452,86 @@ const TanabeSuganoDiagram = () => {
   }, [deltaB]);
 
   return (
-    <div style={{ 
-        backgroundColor: 'white',
-        minHeight: '100vh',
-        width: '100%',
-        padding: '20px'
-      }}>
-
     <div>
-      <h2 style={{ color: 'black' }}>Tanabe-Sugano Diagram ({configs[config].stylized})</h2>
-      <div style={{ marginBottom: '10px', color: 'black' }}>
-        <label>Select configuration: </label>
-        <select value={config} onChange={e => setConfig(e.target.value)}>
-          <option value="d2">d²</option>
-          <option value="d3">d³</option>
-          <option value="d4">d⁴</option>
-          <option value="d5">d⁵</option>
-          <option value="d6">d⁶</option>
-          <option value="d7">d⁷</option>
-          <option value="d8">d⁸</option>
-        </select>
-        <label>   Drag black vertical line to reposition.</label>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-      <div style={{ 
-        border: '2px solid #777777ff',
-        borderRadius: '4px',
-        padding: '15px',
-        display: 'inline-block',
-        backgroundColor: 'white'
-      }}>
-        <svg ref={svgRef}></svg>
-      </div>
-      <div style={{ marginLeft: '20px', marginTop: '5px', color: 'black' }}>
-        <strong>Δ/B:</strong> {deltaB.toFixed(2)}
-        <ul>
+
+    <header>
+      <h2 style={{ color: 'white' }}>Tanabe-Sugano Diagram ({configs[config].stylized})</h2>
+    </header>
+
+    <div className='wrapper'>
+      <div className='contentContainer'>
+        <div className='left-spacer'></div>
+        <div className='ts-left'>
+          <div style={{ 
+            border: '1px solid gray',
+            borderRadius: '4px',
+            padding: '1rem',
+            backgroundColor: '#f8f9fa'
+          }}>
+            <svg ref={svgRef}></svg>
+          </div>
+        </div>
+        
+        <div className='ts-right' style={{ backgroundColor: 'white', borderLeft: 'gray 2px solid', paddingLeft: '1.25rem', marginTop: '0.313rem', color: 'black' }}>
+          <div style={{ marginBottom: '0.625rem', color: 'black' }}>
+            <label>Select configuration: </label>
+            <select value={config} onChange={e => setConfig(e.target.value)}>
+              <option value="d2">d²</option>
+              <option value="d3">d³</option>
+              <option value="d4">d⁴</option>
+              <option value="d5">d⁵</option>
+              <option value="d6">d⁶</option>
+              <option value="d7">d⁷</option>
+              <option value="d8">d⁸</option>
+            </select>
+            <p style={{marginTop: '0.5rem'}}>Drag black vertical line to set ligand-field strength.</p>
+          </div>
+
+        <strong>Δₒ/B:</strong> {deltaB.toFixed(2)}
+        <div>
+        <ul style={{marginTop: '0.625rem'}}>
           {configs[config].terms.map((term, index) => (
             <li key={index} style={{ color: (term.allowedEnd && deltaB > term.allowedEnd) || (term.allowedStart && deltaB < term.allowedStart) || !term.allowed ? 'black' : term.color }}>
-              {term.label}: E/B = {term.fn(deltaB).toFixed(1) || 0}
+              <div className='row'><span className='label'><span className='nowrap-text'>{term.label}:</span> <span className='nowrap-text'>E/B =</span> </span><span className='value'>{term.fn(deltaB).toFixed(1) || 0}</span></div>
             </li>
           ))}
         </ul>
-        <strong>C/B:</strong> {configs[config].CB}
-        <p>Dashed lines represent spin-forbidden transitions. All values are approximate.</p>
+        </div>
+
+        <div style={{borderTop: 'gray 2px solid', paddingTop: 0}}>
+        <p>Dashed lines represent spin-forbidden transitions. All values are approximate. <span className='nowrap-text'><strong>C/B:</strong> {configs[config].CB}</span> </p>
+
         <strong>Common free-ion B values (cm⁻¹):</strong>
-        <ul>
+        <ul style={{marginTop: '0.313rem', listStyleType: 'disc'}}>
           {configs[config].commonIons.map((ion, index) => (
-            <li key={index}>{ion.ion}: {ion.B}</li>
+            <li key={index}>
+              <div><span className='label'>{ion.ion} — </span> <span>{ion.B}</span></div>
+            </li>
           ))}
         </ul>
-        <strong>References:</strong>
-        <ol className='references'>
-          <li>Lancashire, R.J. <i>Tanabe-Sugano diagrams</i> (Dataset). University of the West Indies, Mona, April 2, 2019. http://wwwchem.uwimona.edu.jm/courses/Tanabe-Sugano/TSspread.html</li>
-          <li>Figgis, B.N.; Hitchman, M.A. <i>Ligand Field Theory and Its Applications</i>; Wiley-VCH, 2000.</li>
-        </ol>
-        <p>Interface by Rajas Ketkar with advising from Patrick Holland, Yale University. Last modified Dec 2025.</p>
+        </div>
       </div>
+      <div className='right-spacer'></div>
       </div>
+
+    <div style={{marginTop: '1.5rem', borderTop: 'gray 2px solid', width: '800px'}}>
+    <div style={{paddingTop: '0.625rem',  paddingLeft: '1.56rem', alignContent: 'center'}}>
+      <strong>References:</strong>
+      <ol className='references'>
+        <li>Lancashire, R.J. <i>Tanabe-Sugano diagrams</i> (Dataset). University of the West Indies, Mona, April 2, 2019. http://wwwchem.uwimona.edu.jm/courses/Tanabe-Sugano/TSspread.html</li>
+        <li>Figgis, B.N.; Hitchman, M.A. <i>Ligand Field Theory and Its Applications</i>; Wiley-VCH, 2000.</li>
+      </ol>
+      <p></p>
     </div>
+    </div>
+
+    </div>
+
+    
+
+    <footer style={{ textAlign: 'center', marginTop: '1.25rem', color: 'black', marginBottom: 0 }}>
+      <p style={{color: 'white', margin: 0}}>Interface by Rajas Ketkar with advising from Prof. <a target="_blank" rel="noopener noreferrer" href='https://holland.chem.yale.edu/'>Patrick Holland</a>. © 2026</p>
+    </footer>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 :root {
-  font-family: Tahoma, serif, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Tahoma, serif, system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -15,11 +15,8 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  color: inherit;
+  text-decoration: underline;
 }
 
 body, #root {
@@ -31,49 +28,40 @@ body, #root {
 
 body {
   display: flex;
-  place-items: center;
+  justify-content: center;
   min-width: 320px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+header, footer {
+  width: 100%; 
+  background-color: #212530;
+  padding: 0.625rem 0;
+  margin-bottom: 1.25rem;
 }
 
 h2 {
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.wrapper {
+  justify-items: center;
+  display: grid;
+  width: 100vw;
+  overflow-x: auto;
+  margin-top: 1rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.contentContainer {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 4fr 3fr 1fr;
+}
+
+.ts-left {
+  justify-self: right;
+  margin-right: 2rem; 
 }
 
 .noSelect {
@@ -85,12 +73,53 @@ button:focus-visible {
   user-select: none;
 }
 
+.nowrap-text {
+  white-space: nowrap;
+}
+
 /* Tahoma has no italics */
 .references {
   font-family: Arial, Helvetica, sans-serif;
+  margin-top: 0.625rem;
 }
 
-ul, ol {
-  padding-left: 15px;
+select {
+  font-family: Tahoma, sans-serif;
+  font-size: 1rem;
+  padding: 0.25rem 1rem;
+  border-bottom: 1px solid gray;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+select:hover {
+ background-color: #dedede;
+}
+
+ul {
+  padding-left: 1rem;
   margin-left: 0;
+  display: grid;
+  justify-content: left;
+  list-style-type: '– ';
+  line-height: 1.6;
+}
+
+.row {
+  display: grid;
+  grid-auto-flow: column;
+  text-align: justify;
+  gap: 0.25rem;
+}
+
+.label {
+  justify-self: left;
+}
+.value {
+  justify-self: right;
+  font-variant-numeric: monospace;
 }
