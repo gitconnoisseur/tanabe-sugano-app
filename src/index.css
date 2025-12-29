@@ -50,7 +50,7 @@ h2 {
   display: grid;
   width: 100vw;
   overflow-x: auto;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .contentContainer {
