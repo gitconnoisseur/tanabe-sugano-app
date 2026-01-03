@@ -499,7 +499,7 @@ const TanabeSuganoDiagram = () => {
         </div>
 
         <div style={{borderTop: 'gray 2px solid', paddingTop: 0}}>
-        <p>Dashed lines represent spin-forbidden transitions. All values are approximate. <span className='nowrap-text'><strong>C/B:</strong> {configs[config].CB}</span> </p>
+        <p>Dashed lines represent spin-forbidden transitions. All values are approximate. <span className='nowrap-text'><strong>C/B:</strong> {configs[config].CB.toFixed(2)}</span> </p>
 
         <strong>Common free-ion B values (cm⁻¹):</strong>
         <ul style={{marginTop: '0.313rem', listStyleType: 'disc'}}>
@@ -514,7 +514,7 @@ const TanabeSuganoDiagram = () => {
       <div className='right-spacer'></div>
       </div>
 
-    <div style={{marginTop: '1.5rem', borderTop: 'gray 2px solid', width: '800px'}}>
+    <div style={{marginTop: '1.5rem', borderTop: 'gray 2px solid', width: 'clamp(400px, 80vw, 800px)'}}>
     <div style={{paddingTop: '0.625rem',  paddingLeft: '1.56rem', alignContent: 'center'}}>
       <strong>References:</strong>
       <ol className='references'>
