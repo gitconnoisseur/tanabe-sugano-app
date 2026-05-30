@@ -233,12 +233,16 @@ const TanabeSuganoDiagram = () => {
   const [deltaB, setDeltaB] = useState(25);
   const [config, setConfig] = useState('d2');
   const [dimensions, setDimensions] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Detect viewport size and set responsive dimensions on mount
   useEffect(() => {
     const viewportWidth = window.innerWidth;
+    const isMobile = viewportWidth < 700;
+    setIsMobile(isMobile);
+
     
-    const responsiveDimensions = viewportWidth < 768
+    const responsiveDimensions = isMobile
       ? { 
           width: viewportWidth * 0.9,
           height: (viewportWidth * 0.9) * 1.4, // maintain aspect ratio
@@ -254,7 +258,9 @@ const TanabeSuganoDiagram = () => {
   // Use default dimensions if not yet initialized
   const width = dimensions?.width || 570;
   const height = dimensions?.height || 800;
-  const margin = { top: 30, right: 40, bottom: 60, left: 60 };
+  const margin = isMobile
+    ? { top: 30, right: 40, bottom: 55, left: 55 }
+    : { top: 30, right: 40, bottom: 60, left: 60 };
   const yMax = 70;
   const deltaBStart = 0;
   const deltaBEnd = 40;
@@ -304,7 +310,7 @@ const TanabeSuganoDiagram = () => {
     svg.append("text")
     .attr("text-anchor", "middle")
     .attr("x", width * 1.1 / 2)
-    .attr("y", height - .2 * margin.bottom) // position below axis
+    .attr("y", (height - .2 * margin.bottom) +  (isMobile ? 8 : 0)) // position below axis
     .attr("font-weight", "bold")
     .style("font-size", "1.125rem")
     .classed('noSelect', true)
@@ -313,7 +319,7 @@ const TanabeSuganoDiagram = () => {
     svg.append("text")
     .attr("text-anchor", "middle")
     .attr("x", -height / 2)
-    .attr("y", margin.left / 3) // position to the left of y-axis
+    .attr("y", (margin.left / 3) + (isMobile ? -5 : 0)) // position to the left of y-axis
     .attr("transform", `rotate(-90)`)
     .attr("font-weight", "bold")
     .style("font-size", "1.125rem")
