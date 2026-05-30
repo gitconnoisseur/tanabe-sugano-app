@@ -232,10 +232,29 @@ const TanabeSuganoDiagram = () => {
   const svgRef = useRef();
   const [deltaB, setDeltaB] = useState(25);
   const [config, setConfig] = useState('d2');
+  const [dimensions, setDimensions] = useState(null);
 
-  const width = 570;
-  const height = 800;
-  const margin = { top: 20, right: 40, bottom: 60, left: 60 };
+  // Detect viewport size and set responsive dimensions on mount
+  useEffect(() => {
+    const viewportWidth = window.innerWidth;
+    
+    const responsiveDimensions = viewportWidth < 768
+      ? { 
+          width: viewportWidth * 0.9,
+          height: (viewportWidth * 0.9) * 1.4, // maintain aspect ratio
+        }
+      : { 
+          width: 570, 
+          height: 800,
+        };
+    
+    setDimensions(responsiveDimensions);
+  }, []);
+
+  // Use default dimensions if not yet initialized
+  const width = dimensions?.width || 570;
+  const height = dimensions?.height || 800;
+  const margin = { top: 30, right: 40, bottom: 60, left: 60 };
   const yMax = 70;
   const deltaBStart = 0;
   const deltaBEnd = 40;
@@ -444,7 +463,7 @@ const TanabeSuganoDiagram = () => {
     })
     
 
-  }, [config]);
+  }, [config, dimensions]);
 
   useEffect(() => {
     d3.select(svgRef.current).select('.cursor')
@@ -514,8 +533,7 @@ const TanabeSuganoDiagram = () => {
       <div className='right-spacer'></div>
       </div>
 
-    <div style={{marginTop: '1.5rem', borderTop: 'gray 2px solid', width: 'clamp(400px, 80vw, 800px)'}}>
-    <div style={{paddingTop: '0.625rem',  paddingLeft: '1.56rem', alignContent: 'center'}}>
+    <div className='referenceBlock'>
       <strong>References:</strong>
       <ol className='references'>
         <li>Lancashire, R.J. <i>Tanabe-Sugano diagrams</i> (Dataset). University of the West Indies, Mona, April 2, 2019. http://wwwchem.uwimona.edu.jm/courses/Tanabe-Sugano/TSspread.html</li>
@@ -523,8 +541,6 @@ const TanabeSuganoDiagram = () => {
       </ol>
       <p></p>
     </div>
-    </div>
-
     </div>
 
     
