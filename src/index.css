@@ -90,6 +90,7 @@ h2 {
     border-top: 2px solid gray;
     padding-left: 1.25rem;
     padding-top: 1rem;
+    -webkit-text-size-adjust: 100%;
   }
   
   .references {
