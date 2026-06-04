@@ -543,7 +543,7 @@ const TanabeSuganoDiagram = () => {
             
             return (
               <li key={index} style={{ color: (term.allowedEnd && deltaB > term.allowedEnd) || (term.allowedStart && deltaB < term.allowedStart) || !term.allowed ? 'black' : term.color }}>
-                <div className='row'><span className='label'><span style={{fontSize: '1rem'}} className='nowrap-text'>{term.label}:</span> </span><span style={{fontFamily: 'monospace', fontSize: '1rem'}} className='value' >{(eOverB || 0).toFixed(1) + (normalizedValue ? ` (${normalizedValue.toFixed(1)})` : ' (0.0)')} </span> </div>
+                <div className='row'> <span className='label'><span style={{fontSize: '1rem'}} className='nowrap-text'>{term.label}:</span> </span> <span style={{fontFamily: 'monospace', fontSize: '1rem'}} className='value' > {(eOverB || 0).toFixed(1)}{" ("}<span style={{ textDecoration: normalizedValue === 1 ? 'underline' : 'none' }}>{normalizedValue ? `${normalizedValue.toFixed(1)}` : '0.0'}</span>{")"}</span> </div>
               </li>
             );
           })}
